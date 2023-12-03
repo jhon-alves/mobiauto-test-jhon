@@ -15,22 +15,34 @@ export function useConsultController() {
 
   function handleVehicleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    dispatch(vehiclesActions.changeVehicle(name, value));
+
+    if (name && value) {
+      dispatch(vehiclesActions.changeVehicle(name, value));
+    }
   }
 
   function handleBrandFieldChange(items: BodyProps) {
     const { code, name } = items;
-    dispatch(vehiclesActions.changeField('brand', code, name ));
+
+    if (code && name) {
+      dispatch(vehiclesActions.changeField('brand', code, name ));
+    }
   }
 
   function handleModelFieldChange(items: BodyProps) {
     const { code, name } = items;
-    dispatch(vehiclesActions.changeField('model', code, name ));
+
+    if (code && name) {
+      dispatch(vehiclesActions.changeField('model', code, name ));
+    }
   }
 
   function handleYearFieldChange(items: BodyProps) {
     const { code, name } = items;
-    dispatch(vehiclesActions.changeField('year', code, name ));
+
+    if (code && name) {
+      dispatch(vehiclesActions.changeField('year', code, name ));
+    }
   }
   
   return {
