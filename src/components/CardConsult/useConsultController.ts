@@ -5,10 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/helpers';
 export function useConsultController() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const {
-    filters,
-    typeVehicle
-  } = useAppSelector(state => state.vehicles);
+  const { filters, typeVehicle } = useAppSelector(state => state.vehicles);
 
   function handleVehicleFieldChange(e: any) {
     const { name, value } = e.target;
