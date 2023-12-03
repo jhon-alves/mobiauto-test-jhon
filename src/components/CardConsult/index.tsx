@@ -1,4 +1,5 @@
 import {
+  Box,
   Grid,
   Button,
   TextField,
@@ -7,7 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-
+  Typography
 } from '@mui/material';
 import { Card } from '../styles';
 import { useConsultController } from './useConsultController';
@@ -28,6 +29,12 @@ export function CardConsult({ brands, models, years }: IConsult) {
     router,
     filters,
     typeVehicle,
+    brandError,
+    modelError,
+    yearError,
+    setBrandTouched,
+    setModelTouched,
+    setYearTouched,
     handleVehicleFieldChange,
     handleBrandFieldChange,
     handleModelFieldChange,
@@ -79,10 +86,23 @@ export function CardConsult({ brands, models, years }: IConsult) {
             options={brands}
             getOptionLabel={(option) => option.name || ''}
             isOptionEqualToValue={(_option, value) => filters.brand.code === value.code}
-            renderInput={(params) => <TextField {...params} label="Marca" variant="outlined" />}
             loading={brands?.length === 0}
             value={filters.brand}
             onChange={(_e, items, _options, _details) => handleBrandFieldChange(items)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Marca"
+                variant="outlined"
+                onBlur={() => setBrandTouched(true)}
+                error={brandError}
+                helperText={
+                  brandError && (
+                    <Typography variant="caption">O preenchimento do campo Marca é obrigatório!</Typography>
+                  )
+                }
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12}>
@@ -96,10 +116,23 @@ export function CardConsult({ brands, models, years }: IConsult) {
             options={models}
             getOptionLabel={(option) => option.name || ''}
             isOptionEqualToValue={(_option, value) => filters.model.code === value.code}
-            renderInput={(params) =>  <TextField {...params} label="Modelo" variant="outlined" />}
             loading={models.length === 0}
             value={filters.model}
             onChange={(_e, items, _options, _details) => handleModelFieldChange(items)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Modelo"
+                variant="outlined"
+                onBlur={() => setModelTouched(true)}
+                error={modelError}
+                helperText={
+                  modelError && (
+                    <Typography variant="caption">O preenchimento do campo Modelo é obrigatório!</Typography>
+                  )
+                }
+              />
+            )}
           />
         </Grid>
         {filters.model.name.length > 0 && (
@@ -113,10 +146,23 @@ export function CardConsult({ brands, models, years }: IConsult) {
               options={years}
               getOptionLabel={(option) => option.name || ''}
               isOptionEqualToValue={(_option, value) => filters.year.code === value.code}
-              renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
               loading={years.length === 0}
               value={filters.year}
               onChange={(_e, items, _options, _details) => handleYearFieldChange(items)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Ano"
+                  variant="outlined"
+                  onBlur={() => setYearTouched(true)}
+                  error={yearError}
+                  helperText={
+                    yearError && (
+                      <Typography variant="caption">O preenchimento do campo Ano é obrigatório!</Typography>
+                    )
+                  }
+                />
+              )}
             />
           </Grid>
         )}

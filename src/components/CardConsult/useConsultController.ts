@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { vehiclesActions } from '@/actions';
 import { useAppDispatch, useAppSelector } from '@/helpers';
@@ -12,6 +12,12 @@ export function useConsultController() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { filters, typeVehicle } = useAppSelector(state => state.vehicles);
+  const [brandTouched, setBrandTouched] = useState(false);
+  const [modelTouched, setModelTouched] = useState(false);
+  const [yearTouched, setYearTouched] = useState(false);
+  const brandError = brandTouched && (!filters.brand.code || !filters.brand.name);
+  const modelError = modelTouched && (!filters.model.code || !filters.model.name);
+  const yearError = yearTouched && (!filters.year.code || !filters.year.name);
 
   function handleVehicleFieldChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -19,6 +25,9 @@ export function useConsultController() {
     if (name && value) {
       dispatch(vehiclesActions.changeVehicle(name, value));
     }
+    setBrandTouched(false);
+    setModelTouched(false);
+    setYearTouched(false);
   }
 
   function handleBrandFieldChange(items: BodyProps) {
@@ -49,6 +58,12 @@ export function useConsultController() {
     router,
     filters,
     typeVehicle,
+    brandError,
+    modelError,
+    yearError,
+    setBrandTouched,
+    setModelTouched,
+    setYearTouched,
     handleVehicleFieldChange,
     handleBrandFieldChange,
     handleModelFieldChange,
