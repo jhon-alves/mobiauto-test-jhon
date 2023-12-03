@@ -18,7 +18,7 @@ export default function SearchPage() {
         <Typography variant="h2">Tabela Fipe</Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h3">
+        <Typography variant="h3" align="center">
           Consulte o valor de um veículo de forma gratuita
         </Typography>
       </Grid>

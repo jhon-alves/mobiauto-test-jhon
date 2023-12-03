@@ -16,6 +16,11 @@ export const Container = styled(MuiContainer)(({ theme }) => ({
 export const Card = styled(MuiCard)(({ theme }) => ({
   width: 600,
   padding: theme.spacing(4),
+
+  [theme.breakpoints.down('sm')]: {
+    width: '90%',
+    padding: theme.spacing(2),
+  }
 }));
 
 export const Skeleton = styled(MuiSkeleton)(({ theme }) => ({

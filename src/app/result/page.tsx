@@ -21,7 +21,7 @@ export default function ResultPage() {
       <BoxContainer>
         {loadingDetails ? <CircularProgress /> : (
           <>
-            <Typography variant="h2">
+            <Typography variant="h2" align="center">
               Tabela Fipe: Preço {vehicleDetails?.brand} {vehicleDetails?.model}
             </Typography>
             <Chip label={vehicleDetails?.price} />
