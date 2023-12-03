@@ -1,5 +1,3 @@
-import { fetchApi } from '@/helpers';
-
 export const vehiclesServices = {
   getAllBrands,
   getAllModels,
@@ -8,33 +6,41 @@ export const vehiclesServices = {
 };
 
 async function getAllBrands(vehicleType: string) {
-  try {
-    return await fetchApi(`/${vehicleType}/brands`);
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar as marcas', error);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${vehicleType}/brands`);
+
+  if (!res.ok) {
+    throw new Error('Ocorreu um erro ao buscar as marcas');
   }
+
+  return res.json();
 }
 
 async function getAllModels(vehicleType: string, brandId: string) {
-  try {
-    return await fetchApi(`/${vehicleType}/brands/${brandId}/models`);
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar os modelos', error);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${vehicleType}/brands/${brandId}/models`);
+
+  if (!res.ok) {
+    throw new Error('Ocorreu um erro ao buscar os modelos');
   }
+
+  return res.json();
 }
 
 async function getAllYears(vehicleType: string, brandId: string, modelId: string) {
-  try {
-    return await fetchApi(`/${vehicleType}/brands/${brandId}/models/${modelId}/years`);
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar os anos', error);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${vehicleType}/brands/${brandId}/models/${modelId}/years`);
+
+  if (!res.ok) {
+    throw new Error('Ocorreu um erro ao buscar os anos');
   }
+
+  return res.json();
 }
 
 async function getVehicleDetails(vehicleType: string, brandId: string, modelId: string, yearId: string) {
-  try {
-    return await fetchApi(`/${vehicleType}/brands/${brandId}/models/${modelId}/years/${yearId}`);
-  } catch (error) {
-    console.error('Ocorreu um erro ao buscar os detalhes', error);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${vehicleType}/brands/${brandId}/models/${modelId}/years/${yearId}`);
+
+  if (!res.ok) {
+    throw new Error('Ocorreu um erro ao buscar os detalhes');
   }
+
+  return res.json();
 }
