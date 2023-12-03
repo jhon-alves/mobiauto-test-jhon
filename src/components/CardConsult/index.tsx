@@ -33,7 +33,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
     handleYearFieldChange
   } = useConsultController();
 
-  const isDisabled = !(
+  const isBtnDisabled = !(
     filters.brand.name.length > 0 
     && filters.model.name.length > 0 
     && filters.year.name.length > 0
@@ -91,7 +91,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
             clearText="Excluir"
             clearOnEscape={true}
             disableClearable={true}
-            disabled={!filters.brand.code && !filters.model.name}
+            disabled={!filters.brand.code && !filters.brand.name}
             options={models}
             getOptionLabel={(option) => option.name || ''}
             isOptionEqualToValue={(_option, value) => filters.model.code === value.code}
@@ -121,7 +121,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
         )}
         <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
           <Button
-            disabled={isDisabled}
+            disabled={isBtnDisabled}
             color="primary"
             variant="contained"
             onClick={() => router.push('/result')}
