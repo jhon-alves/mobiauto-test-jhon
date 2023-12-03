@@ -6,7 +6,8 @@ import {
   FormControl,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+
 } from '@mui/material';
 import { Card } from '../styles';
 import { useConsultController } from './useConsultController';
@@ -81,7 +82,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
             renderInput={(params) => <TextField {...params} label="Marca" variant="outlined" />}
             loading={brands?.length === 0}
             value={filters.brand}
-            onChange={(_e, _items, _options, details) => handleBrandFieldChange(details)}
+            onChange={(_e, items, _options, _details) => handleBrandFieldChange(items)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -98,7 +99,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
             renderInput={(params) =>  <TextField {...params} label="Modelo" variant="outlined" />}
             loading={models.length === 0}
             value={filters.model}
-            onChange={(_e, _items, _options, details) => handleModelFieldChange(details)}
+            onChange={(_e, items, _options, _details) => handleModelFieldChange(items)}
           />
         </Grid>
         {filters.model.name.length > 0 && (
@@ -115,7 +116,7 @@ export function CardConsult({ brands, models, years }: IConsult) {
               renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
               loading={years.length === 0}
               value={filters.year}
-              onChange={(_e, _items, _options, details) => handleYearFieldChange(details)}
+              onChange={(_e, items, _options, _details) => handleYearFieldChange(items)}
             />
           </Grid>
         )}
